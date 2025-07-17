@@ -146,7 +146,7 @@ const ExhibitionRegistration = () => {
       submitData.append('prdGrImg', formData.prdGrImg);       
       submitData.append('prdGrPrriod', formData.prdgrPrriod); 
       submitData.append('prdGrSale', formData.prdgrSale);     
-      submitData.append('prdGrView', formData.prdgrView ? '1' : '0'); 
+      submitData.append('prdGrView', formData.prdgrView ? 'Y' : 'N'); 
 
       await specialexhibitionAPI.create(submitData);
       
