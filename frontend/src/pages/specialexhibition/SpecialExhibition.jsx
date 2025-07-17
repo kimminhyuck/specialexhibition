@@ -140,13 +140,13 @@ const ExhibitionRegistration = () => {
       setLoading(true);
       
       const submitData = new FormData();
-      submitData.append('prdgrName', formData.prdgrName);
-      submitData.append('prdgrBr', formData.prdgrBr);
-      submitData.append('prdgrTm', formData.prdgrTm);
-      submitData.append('prdGrImg', formData.prdGrImg);
-      submitData.append('prdgrPrriod', formData.prdgrPrriod);
-      submitData.append('prdgrSale', formData.prdgrSale);
-      submitData.append('prdgrView', formData.prdgrView ? 'Y' : 'N');
+      submitData.append('prdGrName', formData.prdgrName);     
+      submitData.append('prdGrBr', formData.prdgrBr);        
+      submitData.append('prdGrTm', formData.prdgrTm);        
+      submitData.append('prdGrImg', formData.prdGrImg);       
+      submitData.append('prdGrPrriod', formData.prdgrPrriod); 
+      submitData.append('prdGrSale', formData.prdgrSale);     
+      submitData.append('prdGrView', formData.prdgrView ? '1' : '0'); 
 
       await specialexhibitionAPI.create(submitData);
       
