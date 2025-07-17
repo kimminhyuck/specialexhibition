@@ -7,7 +7,7 @@ const ExhibitionRegistration = () => {
     prdgrName: '',
     prdgrBr: '',
     prdgrTm: '',
-    image: null,
+    prdGrImg: null,
     prdgrPrriod: '',
     prdgrSale: '',
     prdgrView: false
@@ -18,20 +18,31 @@ const ExhibitionRegistration = () => {
   const [themeOptions, setThemeOptions] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // 컴포넌트 마운트 시 브랜드/테마 데이터 로드
+  // 컴포넌트 마운트 시 더미 브랜드/테마 데이터 로드
   useEffect(() => {
     // 실제 API에서 브랜드, 테마 데이터를 가져와야 함
-    // 임시 데이터
+    // 임시 더미 데이터
     setBrandOptions([
-      { key: 'BR001', value: '나이키' },
-      { key: 'BR002', value: '아디다스' },
-      { key: 'BR003', value: '퓨마' }
+      { key: 'kuhoplus', value: 'kuhoplus' },
+      { key: '10CorsoComo', value: '10CorsoComo' },
+      { key: '8seconds', value: '8seconds' },
+      { key: 'AMI', value: 'AMI' },
+      { key: 'ANOTHERSHOP', value: 'ANOTHERSHOP' },
+      { key: 'Alice+Olivia', value: 'Olivia' },
+      { key: 'BEAKER', value: 'BEAKER' },
+      { key: 'BEANPOLE', value: 'BEANPOLE' },
+      { key: 'BEANPOLEACCESSORY', value: 'BEANPOLEACCESSORY' },
+      { key: 'BEANPOLEGOLF', value: 'BEANPOLEGOLF' },
+      { key: 'BEANPOLEKIDS', value: 'BEANPOLEKIDS' },
+      { key: 'BEANPOLELADIES', value: 'BEANPOLELADIES' },
+      { key: 'BEANPOLEMEN', value: 'BEANPOLEMEN' }
     ]);
     
     setThemeOptions([
-      { key: 'TH001', value: '스포츠' },
-      { key: 'TH002', value: '캐주얼' },
-      { key: 'TH003', value: '아웃도어' }
+      { key: 'NEWARRIVALS', value: 'NEWARRIVALS' },
+      { key: 'SALES', value: 'SALES' },
+      { key: 'REVIEWS', value: 'REVIEWS' },
+      { key: 'POP-UP STORE', value: 'POP-UP STORE' }
     ]);
   }, []);
 
@@ -62,7 +73,7 @@ const ExhibitionRegistration = () => {
   // 파일 선택 처리
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setFormData(prev => ({ ...prev, image: file }));
+    setFormData(prev => ({ ...prev, prdGrImg: file }));
   };
 
   // 일반 입력 필드 처리
@@ -76,7 +87,7 @@ const ExhibitionRegistration = () => {
 
   // 폼 유효성 검사
   const validateForm = () => {
-    const { prdgrName, prdgrBr, prdgrTm, image, prdgrPrriod, prdgrSale } = formData;
+    const { prdgrName, prdgrBr, prdgrTm, prdGrImg, prdgrPrriod, prdgrSale } = formData;
 
     if (!prdgrName.trim()) {
       alert('기획전명을 입력하세요.');
@@ -98,7 +109,7 @@ const ExhibitionRegistration = () => {
       return false;
     }
 
-    if (!image) {
+    if (!prdGrImg) {
       alert('기획전 이미지를 업로드하세요.');
       return false;
     }
@@ -129,31 +140,28 @@ const ExhibitionRegistration = () => {
       setLoading(true);
       
       const submitData = new FormData();
-      submitData.append('prdgrName', formData.prdgrName);
-      submitData.append('prdgrBr', formData.prdgrBr);
-      submitData.append('prdgrTm', formData.prdgrTm);
-      submitData.append('image', formData.image);
-      submitData.append('prdgrPrriod', formData.prdgrPrriod);
-      submitData.append('prdgrSale', formData.prdgrSale);
-      submitData.append('prdgrView', formData.prdgrView ? 'Y' : 'N');
+      submitData.append('prdGrName', formData.prdgrName);     
+      submitData.append('prdGrBr', formData.prdgrBr);        
+      submitData.append('prdGrTm', formData.prdgrTm);        
+      submitData.append('prdGrImg', formData.prdGrImg);       
+      submitData.append('prdGrPrriod', formData.prdgrPrriod); 
+      submitData.append('prdGrSale', formData.prdgrSale);     
+      submitData.append('prdGrView', formData.prdgrView ? '1' : '0'); 
 
-      // API 호출
       await specialexhibitionAPI.create(submitData);
       
       alert('기획전이 성공적으로 등록되었습니다!');
       
-      // 폼 초기화
       setFormData({
         prdgrName: '',
         prdgrBr: '',
         prdgrTm: '',
-        image: null,
+        prdGrImg: null,
         prdgrPrriod: '',
         prdgrSale: '',
         prdgrView: false
       });
       
-      // 파일 input 초기화
       const fileInput = document.querySelector('input[type="file"]');
       if (fileInput) fileInput.value = '';
 
@@ -274,13 +282,13 @@ const ExhibitionRegistration = () => {
               <td style={{ border: '2px solid #000', textAlign: 'left', padding: '8px' }}>
                 <input
                   type="file"
-                  name="image"
+                  name="prdGrImg"
                   accept="image/*"
                   onChange={handleFileChange}
                 />
-                {formData.image && (
+                {formData.prdGrImg && (
                   <div style={{ fontSize: '12px', color: '#666', marginTop: '2px' }}>
-                    선택됨: {formData.image.name}
+                    선택됨: {formData.prdGrImg.name}
                   </div>
                 )}
               </td>
@@ -371,6 +379,23 @@ const ExhibitionRegistration = () => {
             }}
           >
             {loading ? '저장 중...' : '저장'}
+          </button>
+           <button
+            type="button"
+            onClick={() => window.history.back()}
+            style={{
+              width: '120px',
+              height: '35px',
+              backgroundColor: '#6c757d',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '14px',
+              marginLeft: '10px'
+            }}
+          >
+            뒤로가기
           </button>
         </div>
       </form>
