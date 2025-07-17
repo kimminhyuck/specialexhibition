@@ -23,15 +23,26 @@ const ExhibitionRegistration = () => {
     // 실제 API에서 브랜드, 테마 데이터를 가져와야 함
     // 임시 데이터
     setBrandOptions([
-      { key: 'BR001', value: '나이키' },
-      { key: 'BR002', value: '아디다스' },
-      { key: 'BR003', value: '퓨마' }
+      { key: 'kuhoplus', value: 'kuhoplus' },
+      { key: '10CorsoComo', value: '10CorsoComo' },
+      { key: '8seconds', value: '8seconds' },
+      { key: 'AMI', value: 'AMI' },
+      { key: 'ANOTHERSHOP', value: 'ANOTHERSHOP' },
+      { key: 'Alice+Olivia', value: 'Olivia' },
+      { key: 'BEAKER', value: 'BEAKER' },
+      { key: 'BEANPOLE', value: 'BEANPOLE' },
+      { key: 'BEANPOLEACCESSORY', value: 'BEANPOLEACCESSORY' },
+      { key: 'BEANPOLEGOLF', value: 'BEANPOLEGOLF' },
+      { key: 'BEANPOLEKIDS', value: 'BEANPOLEKIDS' },
+      { key: 'BEANPOLELADIES', value: 'BEANPOLELADIES' },
+      { key: 'BEANPOLEMEN', value: 'BEANPOLEMEN' }
     ]);
     
     setThemeOptions([
-      { key: 'TH001', value: '스포츠' },
-      { key: 'TH002', value: '캐주얼' },
-      { key: 'TH003', value: '아웃도어' }
+      { key: 'NEWARRIVALS', value: 'NEWARRIVALS' },
+      { key: 'SALES', value: 'SALES' },
+      { key: 'REVIEWS', value: 'REVIEWS' },
+      { key: 'POP-UP STORE', value: 'POP-UP STORE' }
     ]);
   }, []);
 
