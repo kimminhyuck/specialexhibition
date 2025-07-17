@@ -1,9 +1,11 @@
 package com.spring.shoppingmall.controller;
 
 import com.spring.shoppingmall.service.ShoppingmallService;
+import com.spring.shoppingmall.vo.ExhibitionDTO;
 import com.spring.shoppingmall.vo.ProductGroupInfoVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,8 +47,11 @@ public class ShoppingmallController {
 
     //기획전 등록
     @RequestMapping("/regist/exhibition")
-    public Map<String, Object> registExhibition(){
+    public Map<String, Object> registExhibition(@ModelAttribute ExhibitionDTO exhibitionDTO){
+        System.out.println("기획전 정보 : " +exhibitionDTO.toString());
+        int insertResult = shoppingmallService.registExhibition(exhibitionDTO);
         Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("insertResult", insertResult);
         return resultMap;
     }
 

@@ -7,4 +7,6 @@ import java.util.List;
 @Mapper
 public interface ShoppingmallMapper {
     List<ProductGroupInfoVO> getListExhibition();
+
+    int insertExhibition(ExhibitionDTO exhibitionDTO);
 }
