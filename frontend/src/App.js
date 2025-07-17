@@ -1,24 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <Router>
+
+     <Routes>
+       <Route path="/api/regist/exhibition" element={<ExhibitionRegistration />} />
+       <Route path="/api/regist/pattern" element={<PatternRegistration />} />
+       <Route path="/api/regist/detailPattern" element={<DetailPatternRegistration />} />
+       <Route path="/api/regist/product" element={<ProductRegistration />} />
+     </Routes>
+     
+      <Route path="/api/delete/detailPattern" element={<DetailPatternDeletion />} />
+      <Route path="/api/delete/pattern" element={<PatternDeletion />} />
+      <Route path="/api/delete/product" element={<ProductDeletion />} />
+      <Route path="/api/list/exhibition" element={<ExhibitionList />} />
+      <Route path="/api/list/detailExhibition" element={<DetailExhibitionList />} />
+      <Route path="/api/list/product" element={<ProductList />} />
+    </Router>
   );
 }
 
