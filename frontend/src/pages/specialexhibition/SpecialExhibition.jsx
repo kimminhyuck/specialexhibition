@@ -148,12 +148,10 @@ const ExhibitionRegistration = () => {
       submitData.append('prdgrSale', formData.prdgrSale);
       submitData.append('prdgrView', formData.prdgrView ? 'Y' : 'N');
 
-      // API 호출
       await specialexhibitionAPI.create(submitData);
       
       alert('기획전이 성공적으로 등록되었습니다!');
       
-      // 폼 초기화
       setFormData({
         prdgrName: '',
         prdgrBr: '',
@@ -164,7 +162,6 @@ const ExhibitionRegistration = () => {
         prdgrView: false
       });
       
-      // 파일 input 초기화
       const fileInput = document.querySelector('input[type="file"]');
       if (fileInput) fileInput.value = '';
 
@@ -286,7 +283,7 @@ const ExhibitionRegistration = () => {
                 <input
                   type="file"
                   name="prdGrImg"
-                  accept="prdGrImg/*"
+                  accept="image/*"
                   onChange={handleFileChange}
                 />
                 {formData.prdGrImg && (
