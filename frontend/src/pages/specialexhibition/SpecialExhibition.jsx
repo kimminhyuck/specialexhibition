@@ -7,7 +7,7 @@ const ExhibitionRegistration = () => {
     prdgrName: '',
     prdgrBr: '',
     prdgrTm: '',
-    image: null,
+    prdGrImg: null,
     prdgrPrriod: '',
     prdgrSale: '',
     prdgrView: false
@@ -62,7 +62,7 @@ const ExhibitionRegistration = () => {
   // 파일 선택 처리
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setFormData(prev => ({ ...prev, image: file }));
+    setFormData(prev => ({ ...prev, prdGrImg: file }));
   };
 
   // 일반 입력 필드 처리
@@ -76,7 +76,7 @@ const ExhibitionRegistration = () => {
 
   // 폼 유효성 검사
   const validateForm = () => {
-    const { prdgrName, prdgrBr, prdgrTm, image, prdgrPrriod, prdgrSale } = formData;
+    const { prdgrName, prdgrBr, prdgrTm, prdGrImg, prdgrPrriod, prdgrSale } = formData;
 
     if (!prdgrName.trim()) {
       alert('기획전명을 입력하세요.');
@@ -98,7 +98,7 @@ const ExhibitionRegistration = () => {
       return false;
     }
 
-    if (!image) {
+    if (!prdGrImg) {
       alert('기획전 이미지를 업로드하세요.');
       return false;
     }
@@ -132,7 +132,7 @@ const ExhibitionRegistration = () => {
       submitData.append('prdgrName', formData.prdgrName);
       submitData.append('prdgrBr', formData.prdgrBr);
       submitData.append('prdgrTm', formData.prdgrTm);
-      submitData.append('image', formData.image);
+      submitData.append('prdGrImg', formData.prdGrImg);
       submitData.append('prdgrPrriod', formData.prdgrPrriod);
       submitData.append('prdgrSale', formData.prdgrSale);
       submitData.append('prdgrView', formData.prdgrView ? 'Y' : 'N');
@@ -147,7 +147,7 @@ const ExhibitionRegistration = () => {
         prdgrName: '',
         prdgrBr: '',
         prdgrTm: '',
-        image: null,
+        prdGrImg: null,
         prdgrPrriod: '',
         prdgrSale: '',
         prdgrView: false
@@ -274,13 +274,13 @@ const ExhibitionRegistration = () => {
               <td style={{ border: '2px solid #000', textAlign: 'left', padding: '8px' }}>
                 <input
                   type="file"
-                  name="image"
-                  accept="image/*"
+                  name="prdGrImg"
+                  accept="prdGrImg/*"
                   onChange={handleFileChange}
                 />
-                {formData.image && (
+                {formData.prdGrImg && (
                   <div style={{ fontSize: '12px', color: '#666', marginTop: '2px' }}>
-                    선택됨: {formData.image.name}
+                    선택됨: {formData.prdGrImg.name}
                   </div>
                 )}
               </td>
