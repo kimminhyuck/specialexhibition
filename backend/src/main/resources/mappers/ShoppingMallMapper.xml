@@ -8,4 +8,30 @@
         FROM
             PRODUCTGROUPINFO
     </select>
+
+    <insert id="insertExhibition" parameterType="com.spring.shoppingmall.vo.ExhibitionDTO">
+        INSERT INTO
+            PRODUCTGROUPINFO
+            (
+                PRDGRIDX,
+                PRDGRBR,
+                PRDGRTM,
+                PRDGRNAME,
+                PRDGRIMG,
+                PRDGRVIEW,
+                PRDGRPRRIOD,
+                PRDGRSALE
+           )
+        VALUES
+            (
+                PRODUCTGROUPINFO_SEQ.NEXTVAL,
+                #{prdGrBr},
+                #{prdGrTm},
+                #{prdGrName},
+                #{imgName},
+                #{prdGrView},
+                #{prdGrPrriod},
+                #{prdGrSale}
+            )
+    </insert>
 </mapper>
