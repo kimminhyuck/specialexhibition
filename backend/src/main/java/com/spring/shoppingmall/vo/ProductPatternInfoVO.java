@@ -1,11 +1,14 @@
-package com.sprinng.shoppingmall.vo;
+package com.spring.shoppingmall.vo;
 
-public class ProdcutPatternInfoVO {
+import java.util.List;
+
+public class ProductPatternInfoVO {
     private int prdPtIdx;
     private int prdGrIdx;
     private String prdPtType;
     private String prdPtSort;
     private String prdPtView;
+    List<ProductPatternDetailVO> patternDetailVOList;
 
     public int getPrdPtIdx() {
         return prdPtIdx;
@@ -47,14 +50,23 @@ public class ProdcutPatternInfoVO {
         this.prdPtView = prdPtView;
     }
 
+    public List<ProductPatternDetailVO> getPatternDetailVOList() {
+        return patternDetailVOList;
+    }
+
+    public void setPatternDetailVOList(List<ProductPatternDetailVO> patternDetailVOList) {
+        this.patternDetailVOList = patternDetailVOList;
+    }
+
     @Override
     public String toString() {
-        return "ProdcutPatternInfoVO{" +
+        return "ProductPatternInfoVO{" +
                 "prdPtIdx=" + prdPtIdx +
                 ", prdGrIdx=" + prdGrIdx +
                 ", prdPtType='" + prdPtType + '\'' +
                 ", prdPtSort='" + prdPtSort + '\'' +
                 ", prdPtView='" + prdPtView + '\'' +
+                ", patternDetailVOList=" + patternDetailVOList +
                 '}';
     }
 }
