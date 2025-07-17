@@ -18,10 +18,10 @@ const ExhibitionRegistration = () => {
   const [themeOptions, setThemeOptions] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // 컴포넌트 마운트 시 브랜드/테마 데이터 로드
+  // 컴포넌트 마운트 시 더미 브랜드/테마 데이터 로드
   useEffect(() => {
     // 실제 API에서 브랜드, 테마 데이터를 가져와야 함
-    // 임시 데이터
+    // 임시 더미 데이터
     setBrandOptions([
       { key: 'kuhoplus', value: 'kuhoplus' },
       { key: '10CorsoComo', value: '10CorsoComo' },

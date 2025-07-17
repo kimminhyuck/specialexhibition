@@ -3,8 +3,6 @@ const Main = () => {
 
   return (
     <div>
-      메인페이지
-
       <div>
         <h1>이용자 페이지 링크</h1>
         <ul>
@@ -21,9 +19,6 @@ const Main = () => {
           <li><a href="/admin/product">상품 관리</a></li>
         </ul>
       </div>
-
-
-
     </div>
   );
 };
