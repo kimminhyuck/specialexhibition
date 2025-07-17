@@ -24,4 +24,7 @@ yarn-error.log*
 
 
 node_modules
+
+// .env 파일은 환경 변수 설정을 위해 사용되며, 보안상 민감한 정보를 포함할 수 있으므로 gitignore에 추가합니다.
 .env
+
