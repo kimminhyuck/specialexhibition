@@ -1,4 +1,6 @@
-package com.sprinng.shoppingmall.vo;
+package com.spring.shoppingmall.vo;
+
+import java.util.List;
 
 public class ProductGroupInfoVO {
 
@@ -10,6 +12,7 @@ public class ProductGroupInfoVO {
     private String prdGrView;
     private String prdGrPrriod;
     private String prdGrSale;
+    List<ProductPatternInfoVO> productPatternInfoVOList;
 
     public int getPrdGrIdx() {
         return prdGrIdx;
@@ -75,6 +78,14 @@ public class ProductGroupInfoVO {
         this.prdGrSale = prdGrSale;
     }
 
+    public List<ProductPatternInfoVO> getProductPatternInfoVOList() {
+        return productPatternInfoVOList;
+    }
+
+    public void setProductPatternInfoVOList(List<ProductPatternInfoVO> productPatternInfoVOList) {
+        this.productPatternInfoVOList = productPatternInfoVOList;
+    }
+
     @Override
     public String toString() {
         return "ProductGroupInfoVO{" +
@@ -86,6 +97,7 @@ public class ProductGroupInfoVO {
                 ", prdGrView='" + prdGrView + '\'' +
                 ", prdGrPrriod='" + prdGrPrriod + '\'' +
                 ", prdGrSale='" + prdGrSale + '\'' +
+                ", productPatternInfoVOList=" + productPatternInfoVOList +
                 '}';
     }
 }

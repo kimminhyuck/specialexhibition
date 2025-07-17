@@ -1,4 +1,4 @@
-package com.sprinng.shoppingmall.vo;
+package com.spring.shoppingmall.vo;
 
 public class ProductGroupProductVO {
     private int prdGrPrdIdx;
