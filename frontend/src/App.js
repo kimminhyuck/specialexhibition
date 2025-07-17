@@ -4,6 +4,7 @@ import SpecialExhibition from './pages/specialexhibition/SpecialExhibition';
 import Main from './pages/main';
 import SpecialExhibitionAdminList from './pages/specialexhibition/SpecialExhibitionAdminList';
 import Layout from './common/layout/Layout';
+import SpecialExhibitionList from './pages/specialexhibition/SpecialExhibitionList';
 
 function App() {
   return (
@@ -11,20 +12,19 @@ function App() {
       <Layout>
         <Routes>
 
-        {/* 일반 페이지 */}
+        {/* 일반 사용자 페이지 */}
 
         {/* 메인 페이지 */}
         <Route path="/" element={<Main />} />
 
         {/* 기획전 리스트 페이지 */}
-        <Route path="/exhibition/detail" element={<div>사용자 기획전 리스트 페이지</div>} />
-
+        <Route path="/exhibition/detail" element={<SpecialExhibitionList />} />
 
 
         {/* 관리자 페이지 */}
 
         {/* 기획전 등록 */}
-        <Route path="/exhibition" element={<SpecialExhibition />} />
+        <Route path="/admin/exhibition/register" element={<SpecialExhibition />} />
 
         {/* 기획전 관리 */}
         <Route path="/admin/exhibition" element={<SpecialExhibitionAdminList />} />

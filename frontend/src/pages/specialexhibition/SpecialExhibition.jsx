@@ -380,6 +380,23 @@ const ExhibitionRegistration = () => {
           >
             {loading ? '저장 중...' : '저장'}
           </button>
+           <button
+            type="button"
+            onClick={() => window.history.back()}
+            style={{
+              width: '120px',
+              height: '35px',
+              backgroundColor: '#6c757d',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '14px',
+              marginLeft: '10px'
+            }}
+          >
+            뒤로가기
+          </button>
         </div>
       </form>
     </div>
