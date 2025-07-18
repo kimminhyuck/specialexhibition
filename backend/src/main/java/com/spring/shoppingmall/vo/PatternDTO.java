@@ -2,21 +2,12 @@ package com.spring.shoppingmall.vo;
 
 import java.util.List;
 
-public class ProductPatternInfoVO {
-    private int prdPtIdx;
+public class PatternDTO {
     private int prdGrIdx;
     private String prdPtType;
     private String prdPtSort;
     private String prdPtView;
-    private List<ProductPatternDetailVO> patternDetailVOList;
-
-    public int getPrdPtIdx() {
-        return prdPtIdx;
-    }
-
-    public void setPrdPtIdx(int prdPtIdx) {
-        this.prdPtIdx = prdPtIdx;
-    }
+    private String crudType;
 
     public int getPrdGrIdx() {
         return prdGrIdx;
@@ -50,23 +41,22 @@ public class ProductPatternInfoVO {
         this.prdPtView = prdPtView;
     }
 
-    public List<ProductPatternDetailVO> getPatternDetailVOList() {
-        return patternDetailVOList;
+    public String getCrudType() {
+        return crudType;
     }
 
-    public void setPatternDetailVOList(List<ProductPatternDetailVO> patternDetailVOList) {
-        this.patternDetailVOList = patternDetailVOList;
+    public void setCrudType(String crudType) {
+        this.crudType = crudType;
     }
 
     @Override
     public String toString() {
-        return "ProductPatternInfoVO{" +
-                "prdPtIdx=" + prdPtIdx +
-                ", prdGrIdx=" + prdGrIdx +
+        return "PatternDTO{" +
+                "prdGrIdx=" + prdGrIdx +
                 ", prdPtType='" + prdPtType + '\'' +
                 ", prdPtSort='" + prdPtSort + '\'' +
                 ", prdPtView='" + prdPtView + '\'' +
-                ", patternDetailVOList=" + patternDetailVOList +
+                ", patternDetailDTOList=" +
                 '}';
     }
 }
