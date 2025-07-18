@@ -78,4 +78,101 @@
                 #{prdGrSale}
             )
     </insert>
+
+    <insert id="insertPattern" parameterType="com.spring.shoppingmall.vo.PatternDTO">
+        INSERT INTO
+            PRODUCTPATTERNINFO
+        VALUES
+            (
+                PRODUCTPATTERNINFO_SEQ.NEXTVAL,
+                #{prdGrIdx},
+                #{prdPtType},
+                #{prdPtSort},
+                #{prdPtView}
+            )
+    </insert>
+
+    <insert id="insertPatternDetail" parameterType="com.spring.shoppingmall.vo.PatternDetailDTO">
+        INSERT INTO
+            PRODUCTPATTERNDETAIL
+        VALUES
+            (
+                PRODUCTPATTERNDETAIL_SEQ.NEXTVAL,
+                #{prdGrIdx},
+                #{prdPtIdx},
+                #{ptDetailType},
+                #{ptDetailImg},
+                #{ptDetailDesc},
+                #{ptDetailMv},
+                #{prdIdx},
+                #{ptDetailView}
+            )
+    </insert>
+
+    <insert id="insertProduct" parameterType="com.spring.shoppingmall.vo.ProductDTO">
+        INSERT INTO
+            PRODUCTGROUPPRODUCT
+        VALUES (
+                   PRODUCTGROUPPRODUCT_SEQ.NEXTVAL,
+                    #{prdGrIdx},
+                    #{prdIdx},
+                    #{prdGrPrdView}
+               )
+    </insert>
+
+    <delete id="deletePattern" parameterType="com.spring.shoppingmall.vo.PatternDTO">
+        DELETE FROM
+            PRODUCTPATTERNINFO
+        WHERE
+            PRDPTIDX = #{prdPtIdx}
+    </delete>
+
+    <delete id="deletePatternDetail" parameterType="com.spring.shoppingmall.vo.PatternDetailDTO">
+        DELETE FROM
+            PRODUCTPATTERNDETAIL
+        WHERE
+            PTDETAILIDX = #{ptDetailIdx}
+    </delete>
+
+    <delete id="deleteProduct" parameterType="com.spring.shoppingmall.vo.ProductDTO">
+        DELETE FROM
+            PRODUCTGROUPPRODUCT
+        WHERE
+            PRDGRPRDIDX = #{prdGrPrdIdx}
+    </delete>
+
+    <update id="updatePattern" parameterType="com.spring.shoppingmall.vo.PatternDTO">
+        UPDATE
+            PRODUCTPATTERNINFO
+        SET
+            PRDPTTYPE = #{prdPtType},
+            PRDPTSORT = #{prdPtSort},
+            PRDPTVIEW = #{prdPtView}
+        WHERE
+            PRDPTIDX = #{prdPtIdx}
+    </update>
+
+    <update id="updatePatternDetail" parameterType="com.spring.shoppingmall.vo.PatternDetailDTO">
+        UPDATE
+            PRODUCTPATTERNDETAIL
+        SET
+            PTDETAILTYPE = #{ptDetailType},
+            PTDETAILIMG = #{ptDetailImg},
+            PTDETAILDESC = #{ptDetailDesc},
+            PTDETAILMV = #{ptDetailMv},
+            PRDIDX = #{prdIdx},
+            PTDETAILVIEW = #{ptDetailView}
+        WHERE
+            PTDETAILIDX = #{ptDetailIdx}
+    </update>
+
+    <update id="updateProduct" parameterType="com.spring.shoppingmall.vo.ProductDTO">
+        UPDATE
+            PRODUCTGROUPPRODUCT
+        SET
+            PRDIDX = #{prdIdx},
+            PRDGRPRDVIEW = #{prdGrPrdView},
+        WHERE
+                PRDGRPRDIDX = #{prdGrPrdIdx}
+    </update>
 </mapper>

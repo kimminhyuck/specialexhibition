@@ -54,7 +54,7 @@ public class ShoppingmallController {
 
     //기획전 상세 정보 등록(패턴, 상품 등록)
     @RequestMapping("/regist/exhibitionDetaii")
-    public Map<String,Object> registExhibitionDetaii(@ModelAttribute ExhibitionDetailDTO exhibitionDetailDTO){
+    public Map<String,Object> registExhibitionDetail(@ModelAttribute ExhibitionDetailDTO exhibitionDetailDTO){
 
         Map<String,Object> exhibitionDetails = new HashMap<>();
         exhibitionDetails.put("pattern", exhibitionDetailDTO.getPatternDTOList());
