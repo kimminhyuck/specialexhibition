@@ -5,6 +5,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 public class PatternDetailDTO {
+    private int ptDetailIdx;
+    private int prdGrIdx;
+    private int prdPtIdx;
     private String ptDetailType;
     private String ptDetailImg;
     private String ptDetailDesc;
@@ -13,6 +16,30 @@ public class PatternDetailDTO {
     private String ptDetailView;
     private String crudType;
     private List<MultipartFile> patternImages;
+
+    public int getPtDetailIdx() {
+        return ptDetailIdx;
+    }
+
+    public void setPtDetailIdx(int ptDetailIdx) {
+        this.ptDetailIdx = ptDetailIdx;
+    }
+
+    public int getPrdGrIdx() {
+        return prdGrIdx;
+    }
+
+    public void setPrdGrIdx(int prdGrIdx) {
+        this.prdGrIdx = prdGrIdx;
+    }
+
+    public int getPrdPtIdx() {
+        return prdPtIdx;
+    }
+
+    public void setPrdPtIdx(int prdPtIdx) {
+        this.prdPtIdx = prdPtIdx;
+    }
 
     public String getPtDetailType() {
         return ptDetailType;
@@ -81,7 +108,10 @@ public class PatternDetailDTO {
     @Override
     public String toString() {
         return "PatternDetailDTO{" +
-                "ptDetailType='" + ptDetailType + '\'' +
+                "ptDetailIdx=" + ptDetailIdx +
+                ", prdGrIdx=" + prdGrIdx +
+                ", prdPtIdx=" + prdPtIdx +
+                ", ptDetailType='" + ptDetailType + '\'' +
                 ", ptDetailImg='" + ptDetailImg + '\'' +
                 ", ptDetailDesc='" + ptDetailDesc + '\'' +
                 ", ptDetailMv='" + ptDetailMv + '\'' +
