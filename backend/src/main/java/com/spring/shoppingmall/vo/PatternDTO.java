@@ -3,11 +3,20 @@ package com.spring.shoppingmall.vo;
 import java.util.List;
 
 public class PatternDTO {
+    private int prdPtIdx;
     private int prdGrIdx;
     private String prdPtType;
     private String prdPtSort;
     private String prdPtView;
     private String crudType;
+
+    public int getPrdPtIdx() {
+        return prdPtIdx;
+    }
+
+    public void setPrdPtIdx(int prdPtIdx) {
+        this.prdPtIdx = prdPtIdx;
+    }
 
     public int getPrdGrIdx() {
         return prdGrIdx;
@@ -52,11 +61,12 @@ public class PatternDTO {
     @Override
     public String toString() {
         return "PatternDTO{" +
-                "prdGrIdx=" + prdGrIdx +
+                "prdPtIdx=" + prdPtIdx +
+                ", prdGrIdx=" + prdGrIdx +
                 ", prdPtType='" + prdPtType + '\'' +
                 ", prdPtSort='" + prdPtSort + '\'' +
                 ", prdPtView='" + prdPtView + '\'' +
-                ", patternDetailDTOList=" +
+                ", crudType='" + crudType + '\'' +
                 '}';
     }
 }

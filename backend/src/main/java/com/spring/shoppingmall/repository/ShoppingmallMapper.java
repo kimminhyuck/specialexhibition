@@ -17,4 +17,22 @@ public interface ShoppingmallMapper {
     List<ProductInfoVO> getListProduct(int ptDetailIdx);
 
     List<ProductInfoVO> getListAllProduct(int exhibitionId);
+
+    int insertPattern(PatternDTO patternDTO);
+
+    int deletePattern(PatternDTO patternDTO);
+
+    int updatePattern(PatternDTO patternDTO);
+
+    int insertPatternDetail(PatternDetailDTO patternDetailDTO);
+
+    int deletePatternDetail(PatternDetailDTO patternDetailDTO);
+
+    int updatePatternDetail(PatternDetailDTO patternDetailDTO);
+
+    int insertProduct(ProductDTO productDTO);
+
+    int deleteProduct(ProductDTO productDTO);
+
+    int updateProduct(ProductDTO productDTO);
 }
