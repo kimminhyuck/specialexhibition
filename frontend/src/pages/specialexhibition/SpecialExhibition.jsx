@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import specialexhibitionAPI from '../../services/specialexhibition/specialexhibition';
 
 const ExhibitionRegistration = () => {
-  // 폼 상태 관리
+
+   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     prdgrName: '',
     prdgrBr: '',
@@ -13,15 +15,13 @@ const ExhibitionRegistration = () => {
     prdgrView: false
   });
 
-  // 브랜드, 테마 옵션 상태
   const [brandOptions, setBrandOptions] = useState([]);
   const [themeOptions, setThemeOptions] = useState([]);
   const [loading, setLoading] = useState(false);
 
   // 컴포넌트 마운트 시 더미 브랜드/테마 데이터 로드
   useEffect(() => {
-    // 실제 API에서 브랜드, 테마 데이터를 가져와야 함
-    // 임시 더미 데이터
+    // 더미 데이터
     setBrandOptions([
       { key: 'kuhoplus', value: 'kuhoplus' },
       { key: '10CorsoComo', value: '10CorsoComo' },
@@ -130,7 +130,6 @@ const ExhibitionRegistration = () => {
     return true;
   };
 
-  // 폼 제출 처리
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -161,9 +160,13 @@ const ExhibitionRegistration = () => {
         prdgrSale: '',
         prdgrView: false
       });
+
+      
+      navigate('/admin/exhibition');
       
       const fileInput = document.querySelector('input[type="file"]');
       if (fileInput) fileInput.value = '';
+
 
     } catch (error) {
       console.error('기획전 등록 실패:', error);

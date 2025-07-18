@@ -5,6 +5,7 @@ import Main from './pages/main';
 import SpecialExhibitionAdminList from './pages/specialexhibition/SpecialExhibitionAdminList';
 import Layout from './common/layout/Layout';
 import SpecialExhibitionList from './pages/specialexhibition/SpecialExhibitionList';
+import SpecialExhibitionpatternreg from './pages/specialexhibition/SpecialExhibitionpatternreg';
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
 
         {/* 기획전 관리 */}
         <Route path="/admin/exhibition" element={<SpecialExhibitionAdminList />} />
+
+        {/* 기획전 패턴&상품 등록 */}
+        <Route path="/admin/exhibition/:id/pattern/register" element={<SpecialExhibitionpatternreg />} />
 
       </Routes>
         </Layout>

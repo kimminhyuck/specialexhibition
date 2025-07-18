@@ -13,8 +13,9 @@ const specialexhibitionAPI = {
   // ## PDF 6페이지
   getDetail: (id, params = {}) => api.get(`/api/list/detailExhibition/${id}`, { params }),
 
-  // 해당 기획전 상품별 상세보기?
+  // 해당 기획전 상품별 상세보기 
   // ## PDF 페이지 없음
+  // 개발예정
   getProducts: (id, params = {}) => api.get(`/api/list/product/${id}`, { params }),
   
   // === 등록 API ===
