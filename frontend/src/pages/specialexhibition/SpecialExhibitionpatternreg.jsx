@@ -7,6 +7,7 @@ const SpecialExhibitionPatternRegister = () => {
   const { exhibitionId } = useParams();
   const navigate = useNavigate();
   
+  
   // 패턴 정보 폼 상태
   const [patternInfoForm, setPatternInfoForm] = useState({
     prdptType: 'img1',
@@ -42,14 +43,18 @@ const SpecialExhibitionPatternRegister = () => {
     { value: 'movie', label: '동영상' }
   ];
 
-  useEffect(() => {
-    if (exhibitionId) {
-      fetchExhibitionInfo();
-      fetchPatternInfoList();
-      fetchProductList();
-      fetchExhibitionProductList();
-    }
-  }, [exhibitionId]);
+ useEffect(() => {
+  console.log('컴포넌트 마운트, exhibitionId:', exhibitionId);
+  if (exhibitionId) {
+    console.log('API 호출 시작');
+    fetchExhibitionInfo();
+    fetchPatternInfoList();
+    fetchProductList();
+    fetchExhibitionProductList();
+  } else {
+    console.log('exhibitionId가 없음');
+  }
+}, [exhibitionId]);
 
   // 패턴 타입 변경 시 상세 필드 업데이트
   useEffect(() => {
@@ -58,32 +63,58 @@ const SpecialExhibitionPatternRegister = () => {
 
   const fetchExhibitionInfo = async () => {
     try {
+      console.log('기획전 ID로 조회 중:', exhibitionId);
       const response = await specialexhibitionAPI.getDetail(exhibitionId);
-      console.log('기획전 정보:', response.data);
+      console.log('기획전 정보 전체 응답:', response);
+      console.log('response.data:', response.data);
       
-      // API 응답 구조에 맞게 수정
-      const exhibitionData = response.data.exhibition || response.data;
-      setExhibitionInfo({
-        prdGrIdx: exhibitionData.prdGrIdx || exhibitionId,
-        prdGrName: exhibitionData.prdGrName || `기획전 ${exhibitionId}`
-      });
+      // 다양한 응답 구조 대응
+      let exhibitionData = null;
+      
+      if (response.data) {
+        // 응답 구조 확인
+        if (response.data.exhibition) {
+          exhibitionData = response.data.exhibition;
+        } else if (response.data.prdGrName) {
+          exhibitionData = response.data;
+        } else if (Array.isArray(response.data) && response.data.length > 0) {
+          exhibitionData = response.data[0];
+        } else {
+          exhibitionData = response.data;
+        }
+      }
+      
+      console.log('추출된 exhibitionData:', exhibitionData);
+      
+      if (exhibitionData) {
+        setExhibitionInfo({
+          prdGrIdx: exhibitionData.prdGrIdx || exhibitionId,
+          prdGrName: exhibitionData.prdGrName || exhibitionData.prdgrName || `기획전 ${exhibitionId}`
+        });
+      } else {
+        throw new Error('기획전 데이터를 찾을 수 없습니다.');
+      }
+      
     } catch (error) {
       console.error('기획전 정보 조회 실패:', error);
+      console.error('에러 상세:', error.message);
+      
       // 실패 시 기본값 설정
       setExhibitionInfo({
         prdGrIdx: exhibitionId,
-        prdGrName: `기획전 ${exhibitionId}`
+        prdGrName: `기획전 ${exhibitionId} (정보 로드 실패)`
       });
     }
   };
 
   const fetchPatternInfoList = async () => {
     try {
-      // 패턴 목록 조회 API (현재는 패턴별 API가 없어서 임시)
-      // const response = await specialexhibitionAPI.getPatternList(exhibitionId);
+      const response = await specialexhibitionAPI.getPatternList(exhibitionId);
       setPatternInfoList([
-        // 실제 API 연동 시 response.data로 교체
         // 임시 데이터
+        { prdptIdx: 1, prdptType: 'img1', prdptSort: 1, prdptView: 'Y' },
+        { prdptIdx: 2, prdptType: 'img2', prdptSort: 2, prdptView: 'N' },
+        { prdptIdx: 3, prdptType: 'text', prdptSort: 3, prdptView: 'Y' },
       ]);
     } catch (error) {
       console.error('패턴 목록 조회 실패:', error);
@@ -92,10 +123,8 @@ const SpecialExhibitionPatternRegister = () => {
 
   const fetchPatternDetailList = async (prdptIdx) => {
     try {
-      // TODO: API 호출
-      // const response = await patternAPI.getDetailList(prdptIdx);
+      const response = await specialexhibitionAPI.getDetail(prdptIdx);
       setPatternDetailList([
-        // 임시 데이터
       ]);
     } catch (error) {
       console.error('패턴 상세 목록 조회 실패:', error);
@@ -413,7 +442,7 @@ const SpecialExhibitionPatternRegister = () => {
                   <td style={{ padding: '8px', border: '1px solid #000' }}>
                     <input
                       type="text"
-                      value={exhibitionInfo?.prdGrName || ''}
+                      value={exhibitionInfo?.prdGrName || '기획전 이름을 불러오는 중...'}
                       readOnly
                       style={{ width: '300px', padding: '4px' }}
                     />
@@ -859,14 +888,6 @@ const SpecialExhibitionPatternRegister = () => {
             </div>
           </div>
         </fieldset>
-        <ActionButton
-          onClick={() => alert('기획전 정보가 저장되었습니다.')}
-          backgroundColor="#007bff"
-          padding="10px 20px"
-          fontSize="14px"
-        >
-          저장
-        </ActionButton>
       </div>
     </div>
   );

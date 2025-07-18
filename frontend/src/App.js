@@ -31,7 +31,7 @@ function App() {
         <Route path="/admin/exhibition" element={<SpecialExhibitionAdminList />} />
 
         {/* 기획전 패턴&상품 등록 */}
-        <Route path="/admin/exhibition/:id/pattern/register" element={<SpecialExhibitionpatternreg />} />
+        <Route path="/admin/exhibition/:exhibitionId/pattern/register" element={<SpecialExhibitionpatternreg />} />
 
       </Routes>
         </Layout>
