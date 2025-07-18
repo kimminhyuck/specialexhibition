@@ -12,7 +12,7 @@ public class ProductGroupInfoVO {
     private String prdGrView;
     private String prdGrPrriod;
     private String prdGrSale;
-    List<ProductPatternInfoVO> productPatternInfoVOList;
+    private List<ProductPatternInfoVO> productPatternInfoVOList;
 
     public int getPrdGrIdx() {
         return prdGrIdx;

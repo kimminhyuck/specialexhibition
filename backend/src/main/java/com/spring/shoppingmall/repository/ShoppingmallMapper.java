@@ -9,4 +9,12 @@ public interface ShoppingmallMapper {
     List<ProductGroupInfoVO> getListExhibition();
 
     int insertExhibition(ExhibitionDTO exhibitionDTO);
+
+    List<ProductPatternInfoVO> getListDetailExhibition(int exhibitionId);
+
+    List<ProductPatternDetailVO> getListPatternDetail(int prdPtIdx);
+
+    List<ProductInfoVO> getListProduct(int ptDetailIdx);
+
+    List<ProductInfoVO> getListAllProduct(int exhibitionId);
 }

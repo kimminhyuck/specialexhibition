@@ -1,42 +1,18 @@
 package com.spring.shoppingmall.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 
-public class ProductPatternDetailVO {
-    private int ptDetailIdx;
-    private int prdGrIdx;
-    private int prdPtIdx;
+public class PatternDetailDTO {
     private String ptDetailType;
     private String ptDetailImg;
     private String ptDetailDesc;
     private String ptDetailMv;
     private String prdIdx;
     private String ptDetailView;
-
-
-    public int getPtDetailIdx() {
-        return ptDetailIdx;
-    }
-
-    public void setPtDetailIdx(int ptDetailIdx) {
-        this.ptDetailIdx = ptDetailIdx;
-    }
-
-    public int getPrdGrIdx() {
-        return prdGrIdx;
-    }
-
-    public void setPrdGrIdx(int prdGrIdx) {
-        this.prdGrIdx = prdGrIdx;
-    }
-
-    public int getPrdPtIdx() {
-        return prdPtIdx;
-    }
-
-    public void setPrdPtIdx(int prdPtIdx) {
-        this.prdPtIdx = prdPtIdx;
-    }
+    private String crudType;
+    private List<MultipartFile> patternImages;
 
     public String getPtDetailType() {
         return ptDetailType;
@@ -86,18 +62,33 @@ public class ProductPatternDetailVO {
         this.ptDetailView = ptDetailView;
     }
 
+    public String getCrudType() {
+        return crudType;
+    }
+
+    public void setCrudType(String crudType) {
+        this.crudType = crudType;
+    }
+
+    public List<MultipartFile> getPatternImages() {
+        return patternImages;
+    }
+
+    public void setPatternImages(List<MultipartFile> patternImages) {
+        this.patternImages = patternImages;
+    }
+
     @Override
     public String toString() {
-        return "ProductPatternDetailVO{" +
-                "ptDetailIdx=" + ptDetailIdx +
-                ", prdGrIdx=" + prdGrIdx +
-                ", prdPtIdx=" + prdPtIdx +
-                ", ptDetailType='" + ptDetailType + '\'' +
+        return "PatternDetailDTO{" +
+                "ptDetailType='" + ptDetailType + '\'' +
                 ", ptDetailImg='" + ptDetailImg + '\'' +
                 ", ptDetailDesc='" + ptDetailDesc + '\'' +
                 ", ptDetailMv='" + ptDetailMv + '\'' +
                 ", prdIdx='" + prdIdx + '\'' +
-                ", ptDetailView='" + ptDetailView +
+                ", ptDetailView='" + ptDetailView + '\'' +
+                ", crudType='" + crudType + '\'' +
+                ", patternImages=" + patternImages +
                 '}';
     }
 }
