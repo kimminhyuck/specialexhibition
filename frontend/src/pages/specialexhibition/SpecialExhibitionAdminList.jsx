@@ -41,33 +41,6 @@ const SpecialExhibitionAdminList = () => {
     navigate(`/admin/exhibition/${exhibitionId}/pattern/register`);
   };
 
-  const handleToggleStatus = async (id, currentStatus) => {
-    if (window.confirm(`기획전 전시 상태를 ${currentStatus === 'Y' ? '비활성화' : '활성화'}하시겠습니까?`)) {
-      try {
-        setExhibitions(prev => prev.map(ex => 
-          ex.prdGrIdx === id ? { ...ex, prdGrView: currentStatus === 'Y' ? 'N' : 'Y' } : ex
-        ));
-        
-        alert('상태가 변경되었습니다.');
-      } catch (err) {
-        console.error('상태 변경 실패:', err);
-        alert('상태 변경에 실패했습니다.');
-      }
-    }
-  };
-
-  const handleDelete = async (id, name) => {
-    if (window.confirm(`"${name}" 기획전을 삭제하시겠습니까?`)) {
-      try {
-        setExhibitions(prev => prev.filter(ex => ex.prdGrIdx !== id));
-        alert('기획전이 삭제되었습니다.');
-      } catch (err) {
-        console.error('삭제 실패:', err);
-        alert('삭제에 실패했습니다.');
-      }
-    }
-  };
-
   if (loading) {
     return (
       <div style={{ textAlign: 'center', padding: '50px' }}>
