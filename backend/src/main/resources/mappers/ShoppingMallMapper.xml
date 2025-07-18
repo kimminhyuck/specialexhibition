@@ -9,6 +9,50 @@
             PRODUCTGROUPINFO
     </select>
 
+    <select id="getListDetailExhibition" parameterType="int" resultType="com.spring.shoppingmall.vo.ProductPatternInfoVO">
+        SELECT
+            *
+        FROM
+            PRODUCTPATTERNINFO
+        WHERE
+            PRDGRIDX = #{exhibitionId}
+    </select>
+
+    <select id="getListPatternDetail" parameterType="int" resultType="com.spring.shoppingmall.vo.ProductPatternDetailVO">
+        SELECT
+            *
+        FROM
+            PRODUCTPATTERNDETAIL
+        WHERE
+            PRDPTIDX = #{prdPtIdx}
+    </select>
+
+    <select id="getListProduct" parameterType="int" resultType="com.spring.shoppingmall.vo.ProductInfoVO">
+        SELECT
+            prd.*
+        FROM
+            PRODUCTINFO prd
+        INNER JOIN
+            PRODUCTGROUPPRODUCT gPrd
+        ON
+            prd.PRDIDX = gPrd.PRDIDX
+        WHERE
+            gPrd.PRDGRIDX = #{ptDetailIdx}
+    </select>
+
+    <select id="getListAllProduct" parameterType="int" resultType="com.spring.shoppingmall.vo.ProductInfoVO">
+        SELECT
+            prd.*
+        FROM
+            PRODUCTINFO prd
+        INNER JOIN
+            PRODUCTGROUPINFO prdGroup
+        ON
+             prd.PRDBR = prdGroup.PRDGRBR
+        WHERE
+            prdGroup.PRDGRIDX = #{exhibitionId}
+    </select>
+
     <insert id="insertExhibition" parameterType="com.spring.shoppingmall.vo.ExhibitionDTO">
         INSERT INTO
             PRODUCTGROUPINFO
