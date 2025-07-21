@@ -11,7 +11,13 @@ const specialexhibitionAPI = {
 
   // 기획전별 상세보기
   // ## PDF 6페이지
-  getDetail: (id, params = {}) => api.get(`/api/list/detailExhibition/${id}`, { params }),
+  // getDetail: (id, params = {}) => api.get(`/api/list/detailExhibition/${id}`, { params }),
+  getDetail: (id, params = {}) => api.get('/api/list/detailExhibition', { 
+  params: { 
+    exhibitionId: id,
+    ...params 
+  } 
+}),
 
   // 해당 기획전 상품별 상세보기 
   // ## PDF 페이지 없음
@@ -35,20 +41,25 @@ const specialexhibitionAPI = {
   // 상품 등록
   // ## PDF 4페이지
   createProduct: (data) => api.post('/api/regist/product', data),
+
+   createExhibitionDetail: (data) => api.post('/api/regist/exhibitionDetail', data),
   
   // === 삭제 API ===
 
+ 
+
   //패턴 삭제
   // ## PDF 3페이지
-  deletePattern: (id) => api.delete(`/api/delete/pattern/${id}`),
+  // deletePattern: (id) => api.delete(`/api/delete/pattern/${id}`),
 
   // 상세 패턴삭제
   // ## PDF 3페이지
-  deleteDetailPattern: (id) => api.delete(`/api/delete/detailPattern/${id}`),
+  // deleteDetailPattern: (id) => api.delete(`/api/delete/detailPattern/${id}`),
 
   // 상품 삭제
   // ## PDF 4페이지
-  deleteProduct: (id) => api.delete(`/api/delete/product/${id}`),
+  // deleteProduct: (id) => api.delete(`/api/delete/product/${id}`),
+
 };
 
 export default specialexhibitionAPI;
