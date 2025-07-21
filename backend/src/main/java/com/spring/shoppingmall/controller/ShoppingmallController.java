@@ -67,47 +67,4 @@ public class ShoppingmallController {
         return resultMap;
     }
 
-//    //패턴 등록
-//    @RequestMapping("/regist/pattern")
-//    public Map<String, Object> registPattern(){
-//        Map<String, Object> resultMap = new HashMap<>();
-//        return resultMap;
-//    }
-//
-//    //상세 패턴 등록
-//    @RequestMapping("/regist/detailPattern")
-//    public Map<String, Object> registDetailPattern(){
-//        Map<String, Object> resultMap = new HashMap<>();
-//        return resultMap;
-//    }
-//
-//    //상품 등록
-//    @RequestMapping("/regist/product")
-//    public Map<String, Object> registProduct(){
-//        Map<String, Object> resultMap = new HashMap<>();
-//        return resultMap;
-//
-//    }
-
-//    //상세 패턴 삭제
-//    @RequestMapping("/delete/detailPattern")
-//    public Map<String, Object> deleteDetailPattern(){
-//        Map<String, Object> resultMap = new HashMap<>();
-//        return resultMap;
-//    }
-//
-//    //패턴 삭제
-//    @RequestMapping("/delete/pattern")
-//    public Map<String, Object> deletePattern(){
-//        Map<String, Object> resultMap = new HashMap<>();
-//        return resultMap;
-//    }
-//
-//    //상품 삭제
-//    @RequestMapping("/delete/product")
-//    public Map<String, Object> deleteProduct(){
-//        Map<String, Object> resultMap = new HashMap<>();
-//        return resultMap;
-//    }
-
 }
