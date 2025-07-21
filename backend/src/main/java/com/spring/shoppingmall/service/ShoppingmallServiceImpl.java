@@ -2,15 +2,17 @@ package com.spring.shoppingmall.service;
 
 import com.spring.shoppingmall.repository.ShoppingmallMapper;
 import com.spring.shoppingmall.vo.*;
+import org.hibernate.QueryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -89,19 +91,37 @@ public class ShoppingmallServiceImpl implements ShoppingmallService {
             for(PatternDetailDTO patternDetailDTO : patternDetailDTOList){
                 String crudType =  patternDetailDTO.getCrudType();
                 if (crudType.equals("I")) {
-                   int result = shoppingmallDao.insertPatternDetail(patternDetailDTO);
+                    int result = 0;
+                    //파일 리스트 할당
+                    List<MultipartFile> files = patternDetailDTO.getPatternImages();
+                    for(MultipartFile file : files) {
+                        String imgName = saveFile(file);
+                        //이미지 저장 실패 시 에러 발생
+                        if (Objects.equals(imgName, "")) {
+                            throw new IOException();
+                        } else {
+                            patternDetailDTO.setPtDetailImg(imgName);
+                            result = shoppingmallDao.insertPatternDetail(patternDetailDTO);
+                            if(result == 0){
+                                return result;
+                            }
+                        }
+                    }
+                } else if(crudType.equals("D")) {
+                   int result = shoppingmallDao.deletePatternDetail(patternDetailDTO);
+                   //패턴 상세 정보 delete 완료 시 로컬에 있는 이미지 삭제
                    if(result == 1){
-                       List<MultipartFile> files = patternDetailDTO.getPatternImages();
-                       for(MultipartFile file : files){
-                           String imgName = saveFile(file);
-                           if(Objects.equals(imgName, "")){
-                               throw new IOException();
-                           }
+                       String fileName = patternDetailDTO.getPtDetailImg();
+                       Boolean isDeleted = deleteFile(fileName);
+                       if(!isDeleted){
+                           throw new IOException();
                        }
                    }
-                } else if(crudType.equals("D")) {
-                    shoppingmallDao.deletePatternDetail(patternDetailDTO);
                 } else if(crudType.equals("U")) {
+                    // 이미지 파일 수정 시 기존 이미지 파일 삭제 및 수정된 이미지 파일 저장 로직 구현해야 함
+                    // 기존에 있던 이미지 파일 추출
+                    // 수정된 DTO와 이미지 파일이 일치 하지 않으면, 기존 이미지 삭제 그리고 새로 수정된 이미지 파일 저장
+                    int patternDetailIdx = patternDetailDTO.getPtDetailIdx();
                     shoppingmallDao.updatePatternDetail(patternDetailDTO);
                 }
             }
@@ -141,9 +161,20 @@ public class ShoppingmallServiceImpl implements ShoppingmallService {
             file.transferTo(destFile);
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            return "";
         }
 
         return fileName;
+    }
+
+    private Boolean deleteFile(String fileName) {
+        String dirPath = "C:\\mallImages";
+        try{
+            Path filePath = Paths.get(dirPath,  fileName);
+            return Files.deleteIfExists(filePath);
+        } catch(IOException e){
+            e.printStackTrace();
+            return false;
+        }
     }
 }
