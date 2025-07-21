@@ -48,7 +48,6 @@ const SpecialExhibitionPatternRegister = () => {
 
   // 컴포넌트 마운트 시 기획전 상세 정보 로드
   useEffect(() => {
-    console.log('컴포넌트 마운트, exhibitionId:', exhibitionId);
     if (exhibitionId) {
       loadExhibitionDetailData();
     }
@@ -86,11 +85,9 @@ const SpecialExhibitionPatternRegister = () => {
   const loadExhibitionDetailData = async () => {
     setLoading(true);
     try {
-      console.log('기획전 상세 정보 조회:', exhibitionId);
       
       // 1. 기획전 상세 정보 조회
       const response = await specialexhibitionAPI.getDetail(exhibitionId);
-      console.log('기획전 상세 응답:', response.data);
       
       const data = response.data;
       
@@ -104,7 +101,6 @@ const SpecialExhibitionPatternRegister = () => {
       } else {
         // 응답에 기획전 정보가 없는 경우 → 기획전 리스트에서 찾기
         try {
-          console.log('기획전 정보가 없어서 리스트에서 조회');
           const listResponse = await specialexhibitionAPI.getList();
           const exhibitions = listResponse.data.exhibitionList || [];
           const currentExhibition = exhibitions.find(ex => ex.prdGrIdx == exhibitionId);
@@ -626,18 +622,6 @@ const SpecialExhibitionPatternRegister = () => {
         >
           전체 저장
         </ActionButton>
-      </div>
-
-      {/* 상태 알림 */}
-      <div style={{ 
-        marginBottom: '20px', 
-        padding: '10px', 
-        backgroundColor: '#d1ecf1', 
-        border: '1px solid #bee5eb',
-        borderRadius: '4px',
-        fontSize: '14px'
-      }}>
-        <strong>알림:</strong> 모든 변경사항은 로컬에서 임시 저장됩니다. 우측 상단의 "전체 저장" 버튼을 눌러야 실제 데이터베이스에 저장됩니다.
       </div>
 
       {/* 로딩 오버레이 */}
@@ -1368,25 +1352,6 @@ const SpecialExhibitionPatternRegister = () => {
           </div>
         </fieldset>
       </div>
-
-      {/* 디버깅 정보 (개발 시에만 표시) */}
-      {process.env.NODE_ENV === 'development' && (
-        <div style={{ marginTop: '20px', padding: '15px', backgroundColor: '#f8f9fa', border: '1px solid #dee2e6', borderRadius: '4px' }}>
-          <h5>디버깅 정보</h5>
-          <div style={{ fontSize: '12px', fontFamily: 'monospace', lineHeight: '1.5' }}>
-            <div><strong>exhibitionId:</strong> {exhibitionId}</div>
-            <div><strong>기획전명:</strong> {exhibitionInfo?.prdGrName}</div>
-            <div><strong>패턴 목록 수:</strong> {patternInfoList.length}</div>
-            <div><strong>선택된 패턴:</strong> {selectedPatternIdx}</div>
-            <div><strong>패턴 상세 타입:</strong> {patternDetailForm.ptdetailType}</div>
-            <div><strong>패턴 상세 수:</strong> {patternDetailList.length}</div>
-            <div><strong>전체 상품 수:</strong> {allProductList.length}</div>
-            <div><strong>기획전 상품 수:</strong> {exhibitionProductList.length}</div>
-            <div><strong>선택된 상품 수:</strong> {selectedProducts.length}</div>
-            <div><strong>API 함수 존재:</strong> {specialexhibitionAPI.createExhibitionDetail ? 'YES' : 'NO'}</div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
